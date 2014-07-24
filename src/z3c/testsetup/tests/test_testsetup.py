@@ -1,3 +1,4 @@
+from __future__ import print_function
 import doctest
 import os
 import re
@@ -72,7 +73,7 @@ def print_file(path):
     This way we prevent the testrunner to test the output.
     """
     contents = open(path, 'r').read()
-    print '|  ' + '\n|  '.join(contents.split('\n'))
+    print('|  ' + '\n|  '.join(contents.split('\n')))
     return
 
 

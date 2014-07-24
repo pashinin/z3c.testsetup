@@ -11,6 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+from __future__ import print_function
 """Helper functions for testsetup.
 """
 import sys
@@ -98,7 +99,7 @@ def get_marker_from_file(marker, filepath):
 
 
 def warn(text):
-    print "Warning: ", text
+    print("Warning: ", text)
 
 
 def import_name(name):

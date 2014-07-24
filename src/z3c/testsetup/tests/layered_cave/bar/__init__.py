@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 import zope.interface
 
 class IBar(zope.interface.Interface):
@@ -7,6 +7,6 @@ class IBar(zope.interface.Interface):
 
 class BarUtility(object):
     zope.interface.implements(IBar)
-    
+
     def do_bar(self):
-        print "Bar!"
+        print("Bar!")

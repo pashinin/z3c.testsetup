@@ -1,15 +1,16 @@
+from __future__ import print_function
 import os
 from zope.app.testing.functional import ZCMLLayer
 
 def setUp(test):
-    print "    Custom setUp for ", test
+    print("    Custom setUp for ", test)
     # We register a function that will be available during tests.
     test.globs['myfunc'] = lambda x: 2*x
 
 def tearDown(test):
-    print "    Custom tearDown for ", test
+    print("    Custom tearDown for ", test)
     del test.globs['myfunc'] # unregister function
-    
+
 # We define a ZCML test layer. ZCML layers are special as they define
 # some setup code for creation of empty ZODBs and more. If you only
 # want some ZCML registrations to be done, you can use it like so:
@@ -66,14 +67,14 @@ class UnitLayer1(object):
         """This method is run before each single test in the current
         layer. It is optional.
         """
-        print "    Running testSetUp of UnitLayer1"
+        print("    Running testSetUp of UnitLayer1")
 
     @classmethod
     def testTearDown(self):
         """This method is run before each single test in the current
         layer. It is optional.
         """
-        print "    Running testTearDown of UnitLayer1"
+        print("    Running testTearDown of UnitLayer1")
 
 class UnitLayer2(UnitLayer1):
     """This Layer inherits ``UnitLayer1``.
@@ -90,8 +91,8 @@ class UnitLayer2(UnitLayer1):
 
     @classmethod
     def testSetUp(self):
-        print "    Running testSetUp of UnitLayer2"
+        print("    Running testSetUp of UnitLayer2")
 
     @classmethod
     def testTearDown(self):
-        print "    Running testTearDown of UnitLayer2"
+        print("    Running testTearDown of UnitLayer2")
