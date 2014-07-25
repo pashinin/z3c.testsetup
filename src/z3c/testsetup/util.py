@@ -17,6 +17,7 @@ from __future__ import print_function
 import sys
 import re
 import six
+import locale
 from inspect import getmro, ismethod, getargspec
 from martian.scan import resolve
 
@@ -73,6 +74,11 @@ def get_marker_from_string(marker, text):
      .. :<Tag>: <Value>
 
     """
+    encoding = locale.getdefaultlocale()[1]
+    if isinstance(marker, six.binary_type):
+        marker = marker.decode(encoding)
+    if isinstance(text, six.binary_type):
+        text = text.decode(encoding)
     marker = ":%s:" % marker.lower()
     if marker not in marker_regexs:
         marker_regexs[marker] = re.compile('^(\.\.\s+)?%s(.*)$' % (marker,),
