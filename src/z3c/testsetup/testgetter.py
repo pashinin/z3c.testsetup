@@ -69,7 +69,7 @@ class BasicTestGetter(object):
                 self.package, **self.settings).getTestSuite()
             )
         return suite
-    
+
     def filterKeywords(self):
         """Filter keywords passed to the constructor.
 
@@ -81,7 +81,7 @@ class BasicTestGetter(object):
         if not getattr(self, 'wrapped_class', None):
             return
         supported_kws = get_keyword_params(self.wrapped_class, '__init__')
-        for kw, val in new_kws.items():
+        for kw, val in list(new_kws.items()):
             if (kw.startswith(self.special_char) and
                 kw[1:] in supported_kws):
                 new_kws[kw[1:]] = val
@@ -110,7 +110,7 @@ class UnitDocTestGetter(BasicTestGetter):
 
     wrapped_class = UnitDocTestSetup
     special_char = 'u'
-    
+
 class PythonTestGetter(BasicTestGetter):
     """Collect 'normal' python tests.
     """
@@ -125,7 +125,7 @@ class BasicTestCollector(BasicTestGetter):
     TestCollectors are TestGetters, that can handle several TestGetter
     types at once.
     """
-    
+
     handled_getters = []
     def __call__(self):
         """Return a test suite.
@@ -153,4 +153,3 @@ class TestCollector(BasicTestCollector):
     """
     handled_getters = [SimpleDocTestGetter,
                        UnitDocTestGetter, PythonTestGetter]
-
