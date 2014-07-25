@@ -15,6 +15,7 @@
 """
 import doctest
 import unittest
+import six
 import os.path
 from os import listdir
 from zope.testing import cleanup
@@ -74,11 +75,11 @@ class SimpleDocTestSetup(DocTestSetup):
                 layerdef = functional_zcml_layer
 
             setup = get_marker_from_file('setup', name) or self.setUp
-            if setup is not None and isinstance(setup, basestring):
+            if setup is not None and isinstance(setup, six.string_types):
                 setup = get_attribute(setup)
 
             teardown = get_marker_from_file('teardown', name) or self.tearDown
-            if teardown is not None and isinstance(teardown, basestring):
+            if teardown is not None and isinstance(teardown, six.string_types):
                 teardown = get_attribute(teardown)
 
             if os.path.isabs(name):

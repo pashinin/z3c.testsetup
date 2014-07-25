@@ -16,7 +16,7 @@ from __future__ import print_function
 """
 import sys
 import re
-
+import six
 from inspect import getmro, ismethod, getargspec
 from martian.scan import resolve
 
@@ -31,7 +31,7 @@ def get_package(pkg_or_dotted_name):
     returned as-is.
     """
     pkg = pkg_or_dotted_name
-    if isinstance(pkg, basestring):
+    if isinstance(pkg, six.string_types):
         pkg = resolve(pkg)
     return pkg
 
