@@ -89,7 +89,7 @@ def get_marker_from_string(marker, text):
         if result is None:
             continue
         result = result.groups()[1].strip()
-        return unicode(result)
+        return result
     return None
 
 
